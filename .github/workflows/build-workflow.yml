@@ -5,3 +5,4 @@ on:
     branches: [ php-7.4-ubuntu-20.04 ]
     schedule:
     - cron: '30 0 * * MON'  # 0030 in UTC, 0600 in IST
+  
