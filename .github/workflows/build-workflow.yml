@@ -1,7 +1,13 @@
 name: OrangeHRM PROD Image Build Workflow
-
+aa 
 on:
   push:
     branches: [ php-7.4-ubuntu-20.04 ]
     schedule:
     - cron: '30 0 * * MON'  # 0030 in UTC, 0600 in IST
+    aaa 
+env:
+  REGISTRY: hub.docker.com
+  DOCKER_HUB_REPO: "orangehrm/orangehrm-environment-images"
+  TAG_NAME: "prod-php-7.4.19-ubuntu-20.04"
+  LATEST_TAG_NAME: "prod-php-latest-ubuntu-20.04"
