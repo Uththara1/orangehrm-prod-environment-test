@@ -10,5 +10,23 @@ env:
   DOCKER_HUB_REPO: "orangehrm/orangehrm-environment-images"
   TAG_NAME: "prod-php-7.4-ubuntu-20.04"
   LATEST_TAG_NAME: "prod-php-latest-ubuntu-20.04"
-  UPSTREAM_REPO: "orangehrm/orangehrm-prod-environment"
+  UPSTREAM_REPO: "uththara1/orangehrm-prod-environment"
   UPSTREAM_BRANCH: "refs/heads/php-7.4-ubuntu-20.04"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+       uses: actions/checkout@v3
+
+      - name: Verify prerequisites
+        run: |
+          docker --version
+          docker-compose --version
+          composer --version
+
+  
