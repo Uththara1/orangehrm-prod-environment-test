@@ -21,12 +21,18 @@ jobs:
 
     steps:
       - name: Checkout repository
-       uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Verify prerequisites
         run: |
           docker --version
           docker-compose --version
           composer --version
+
+          - name: Install test suite dependencies
+        run: composer install
+
+      - name: Build docker image
+        run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} --build-arg REDHAT_USERNAME=${{ secrets.REDHAT_USERNAME }} --build-arg REDHAT_PASSWORD=${{ secrets.REDHAT_PASSWORD }} docker-image    
 
   
