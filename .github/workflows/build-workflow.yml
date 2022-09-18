@@ -1,27 +1,20 @@
 on:
   push:
     branches: [ php-7.4-ubuntu-20.04 ]
-    #schedule:
-    #- cron: '30 0 * * MON'  # 0030 in UTC, 0600 in IST
-     
+    
 env:
-  REGISTRY: hub.docker.com
-  DOCKER_HUB_REPO: "orangehrm/orangehrm-environment-images"
-  TAG_NAME: "prod-php-7.4-ubuntu20.04" 
-  LATEST_TAG_NAME: "prod-php-latest-ubuntu20.04"
-  UPSTREAM_REPO: "uththara1/orangehrm-prod-environment-test"
-  UPSTREAM_BRANCH: "refs/heads/php-7.4-ubuntu-20.04"
-
+  REPO: "orangehrm/orangehrm-environment-images"
+  TAG: "prod-php-7.4-ubuntu20.04" 
+  
 jobs:
 
     build:
 
       runs-on: ubuntu-latest
       steps:
-       - name: Run a one-line script
-         run: echo Hello, world!
-      
-       - name: Checkout Repository
+       - name: testing script
+         run: echo Hello world      
+       
          uses: actions/checkout@v3
 
        - name: Verify prerequisites
@@ -35,13 +28,22 @@ jobs:
        - name: Install test suite dependencies
          run: |
            composer update
-           docker-compose up -d
            composer install
-           docker ps
-           
-           
-
+           docker ps        
+        
        - name: Build docker image
-         run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} docker-image   
+         run: docker build -t ${{ env.REPO }}:${{ env.TAG }} docker-image  
 
+       - name: Up the container
+         run: |
+           docker-compose up -d
+           docker ps
+
+       - name: Unit test 
+         run: php vendor/bin/codecept run unit
+
+       - name: Push the latest image to the docker hub
+         run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+         run: docker push $REPO:$TAG
+         echo '$REPO:$TAG image was successfully updated to the docker hub' 
       
