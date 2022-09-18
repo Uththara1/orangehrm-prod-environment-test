@@ -22,10 +22,10 @@ jobs:
        - name: Run a one-line script
          run: echo Hello, world!
       
-      #Checkout repository
+       - name: Checkout Repository
          uses: actions/checkout@v3
 
-      #Verify prerequisites
+       - Name: Verify prerequisites
          run: |
            uname -a
            php --version
