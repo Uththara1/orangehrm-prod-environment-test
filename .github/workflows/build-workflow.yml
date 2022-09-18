@@ -44,6 +44,7 @@ jobs:
          run: php vendor/bin/codecept run unit
 
        - name: Push the latest image to the docker hub
-         run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-         run: docker push ${{ env.REPO }}:${{ env.TAG }}
+         run: |
+           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+           docker push ${{ env.REPO }}:${{ env.TAG }}
       
