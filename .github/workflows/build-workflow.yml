@@ -35,9 +35,11 @@ jobs:
 
        - name: Install test suite dependencies
          run: |
+           composer update
            docker-compose up -d
            composer install
            docker ps
+           
            
 
        - name: Build docker image
