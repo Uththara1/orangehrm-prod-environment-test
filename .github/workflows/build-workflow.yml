@@ -2,14 +2,14 @@ name: OrangeHRM PROD Image Build Workflow
 on:
   push:
     branches: [ php-7.4-ubuntu-20.04 ]
-    schedule:
-    - cron: '30 0 * * MON'  # 0030 in UTC, 0600 in IST
+    #schedule:
+    #- cron: '30 0 * * MON'  # 0030 in UTC, 0600 in IST
      
 env:
   REGISTRY: hub.docker.com
   DOCKER_HUB_REPO: "orangehrm/orangehrm-environment-images"
-  TAG_NAME: "prod-php-7.4-ubuntu-20.04"
-  LATEST_TAG_NAME: "prod-php-latest-ubuntu-20.04"
+  TAG_NAME: "prod-php-7.4-ubuntu20.04" 
+  LATEST_TAG_NAME: "prod-php-latest-ubuntu20.04"
   UPSTREAM_REPO: "uththara1/orangehrm-prod-environment"
   UPSTREAM_BRANCH: "refs/heads/php-7.4-ubuntu-20.04"
 
@@ -20,19 +20,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Run a one-line script
+        run: echo Hello, world!
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Verify prerequisites
         run: |
+          uname -a
+          php --version
           docker --version
           docker-compose --version
           composer --version
 
-          - name: Install test suite dependencies
-        run: composer install
+      - name: Install test suite dependencies
+        run: |
+          docker-compose up -d
+          composer install
+          docker ps
+           
 
       - name: Build docker image
-        run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} --build-arg REDHAT_USERNAME=${{ secrets.REDHAT_USERNAME }} --build-arg REDHAT_PASSWORD=${{ secrets.REDHAT_PASSWORD }} docker-image    
+        run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} docker-image    
 
   
