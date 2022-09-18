@@ -45,5 +45,4 @@ jobs:
        - name: Push the latest image to the docker hub
          run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
          run: docker push ${{ env.REPO }}:${{ env.TAG }}
-         echo '${{ env.REPO }}:${{ env.TAG }} image was successfully updated to the docker hub' 
       
