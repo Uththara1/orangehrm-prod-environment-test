@@ -33,14 +33,14 @@ jobs:
            docker-compose --version
            composer --version
 
-        - name: Install test suite dependencies
+       - name: Install test suite dependencies
          run: |
            docker-compose up -d
            composer install
            docker ps
            
 
-        - name: Build docker image
+       - name: Build docker image
          run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} docker-image   
 
       
