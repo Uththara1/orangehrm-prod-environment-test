@@ -13,34 +13,5 @@ env:
   UPSTREAM_REPO: "uththara1/orangehrm-prod-environment"
   UPSTREAM_BRANCH: "refs/heads/php-7.4-ubuntu-20.04"
 
-jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Run a one-line script
-        run: echo Hello, world!
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Verify prerequisites
-        run: |
-          uname -a
-          php --version
-          docker --version
-          docker-compose --version
-          composer --version
-
-      - name: Install test suite dependencies
-        run: |
-          docker-compose up -d
-          composer install
-          docker ps
-           
-
-      - name: Build docker image
-        run: docker build -t ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG_NAME }} docker-image    
 
   
