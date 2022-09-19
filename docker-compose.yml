@@ -16,8 +16,8 @@ services:
         ipv4_address: 10.2.1.100
     privileged: true
     restart: always
-    hostname: orangehrm-prod-web_ubuntu
-    container_name: prod_web_ubuntu
+    hostname: orangehrm-prod-web
+    container_name: prod_web
 
   db102:
     image: orangehrm/orangehrm-db-images:mariadb-10.2
