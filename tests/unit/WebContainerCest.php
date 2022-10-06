@@ -34,7 +34,7 @@ class WebContainerCest
     public function checkImageMagick(UnitTester $I){
         $I->wantTo("verify imagemagick is installed in the container");
         $I->runShellCommand("docker exec prod_web convert -version");
-        $I->seeInShellOutput('ImageMagick.x86_64');
+        $I->seeInShellOutput('ImageMagick 6.9');
     }
     
     public function checkApacheServiceIsRunning(UnitTester $I){
@@ -46,7 +46,7 @@ class WebContainerCest
     public function checkCronInstallation(UnitTester $I){
         $I->wantTo("verify cron is installed in the container");
         $I->runShellCommand("docker exec prod_web apt list --installed | grep cron");
-        $I->seeInShellOutput('cronie-1.4.11');
+        $I->seeInShellOutput('cron/focal,now 3.0'); //Nothing shows as cronie
 
     }
 
@@ -63,12 +63,12 @@ class WebContainerCest
 
     }
 
-    public function checkMemcacheServiceIsRunning(UnitTester $I){
+    /*public function checkMemcacheServiceIsRunning(UnitTester $I){
         $I->wantTo("verify memcache is up and running in the container");
         $I->runShellCommand("docker exec prod_web service memcached status");
         $I->seeInShellOutput('active (running)');
     }
-
+    */
     public function checkMySQLClientInstallation(UnitTester $I){
         $I->wantTo("verify mysql-client is installed in the container");
         $I->runShellCommand("docker exec prod_web apt list --installed | grep mariadb-client");
@@ -104,7 +104,7 @@ class WebContainerCest
     public function checkLibSSHInstallation(UnitTester $I){
             $I->wantTo("verify libssh2 is installed in the container");
             $I->runShellCommand("docker exec prod_web apt list --installed | grep libssh2");
-            $I->seeInShellOutput('libssh2');
+            $I->seeInShellOutput('libssh2-1');
     }
 
     public function checkZipInstallation(UnitTester $I){
@@ -129,7 +129,7 @@ class WebContainerCest
     public function checkP7zipInstallation(UnitTester $I){
         $I->wantTo("verify p7zip is installed in the container");
         $I->runShellCommand("docker exec prod_web apt list --installed | grep p7zip");
-        $I->seeInShellOutput('installed');
+        $I->seeInShellOutput('p7zip/focal,now 16.02');
 
     }
 
