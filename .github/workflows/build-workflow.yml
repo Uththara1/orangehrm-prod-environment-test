@@ -5,8 +5,8 @@ on:
 env:
   REPO: "orangehrm/orangehrm-environment-images"
   TAG: "prod-php-7.4-ubuntu20.04" 
-  DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
-  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  //DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
+  //DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   Docker_HUB_REPO: "us95123/orangehrm-environment-images"
   
 jobs:
@@ -46,7 +46,7 @@ jobs:
 
        - name: Push Docker image to Docker Hub
        - name: Log in to Docker Hub
-         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+         run: docker login 
 
        - name: Tag the image
          run: docker tag ${{ env.REPO }}:${{ env.TAG }} ${{ env.DOCKER_HUB_REPO }}:${{ env.TAG }}
