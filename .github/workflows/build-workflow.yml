@@ -43,7 +43,7 @@ jobs:
          run: php vendor/bin/codecept run unit
 
        - name: Publish to docker hub
-         uses: docker/build-push-action@v1
+         uses: docker/build-push-action@v3
          with: 
             username: ${{ secrets.DOCKER_HUB_UN }}
             password: ${{ secrets.DOCKER_HUB_PW }}
