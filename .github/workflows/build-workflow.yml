@@ -5,8 +5,6 @@ on:
 env:
   REPO: "orangehrm/orangehrm-environment-images"
   TAG: "prod-php-7.4-ubuntu20.04" 
-  //DOCKER_USERNAME: ${{secrets.DOCKER_USER}}
-  //DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
   Docker_HUB_REPO: "us95123/orangehrm-environment-images"
   
 jobs:
