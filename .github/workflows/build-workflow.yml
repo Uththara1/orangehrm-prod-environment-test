@@ -45,9 +45,11 @@ jobs:
        - name: Publish to docker hub
          uses: docker/build-push-action@v3
          with: 
+            context: .
+            push: true
             username: ${{ secrets.DOCKER_HUB_UN }}
             password: ${{ secrets.DOCKER_HUB_PW }}
-            repository: us95123/next
+            repository: us95123/ubuntu
             tags: ${{ env.TAG }}
         
        
