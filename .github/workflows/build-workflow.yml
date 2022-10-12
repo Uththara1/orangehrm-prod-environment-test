@@ -50,7 +50,7 @@ jobs:
            password: ${{secrets.DOCKER_HUB_PW}}
 
        - name: tag the docker image 
-         run: tag ${{ env.REPO }}:${{ env.TAG }} ${env.{DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
+         run: docker tag ${{ env.REPO }}:${{ env.TAG }} ${env.{DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
 
        - name: push the image 
          run: docker push ${{env.DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
