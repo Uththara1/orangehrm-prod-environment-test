@@ -7,6 +7,7 @@ env:
   TAG: "prod-php-7.4-ubuntu20.04" 
   DOCKER_HUB_REPO: "us95123"
   LATEST_TAG: "ubuntu20"
+  DOKCER_IMAGE: "orangehrm-environment-images"
   
 jobs:
 
@@ -34,6 +35,8 @@ jobs:
         
        - name: Build docker image
          run: docker build -t ${{ env.REPO }}:${{ env.TAG }} docker-image  
+       
+       - name: show images
          run: docker images
 
        - name: Up the container
@@ -51,10 +54,10 @@ jobs:
            password: ${{secrets.DOCKER_HUB_PW}}
 
        - name: tag the docker image 
-         run: docker tag ${{ env.REPO }}:${{ env.TAG }} ${{env.DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
+         run: docker tag ${{ env.REPO }}:${{ env.TAG }} ${{env.DOCKER_HUB_REPO}}/${{ env.DOCKER_IMAGE }}:${{ env.LATEST_TAG }}
 
        - name: push the image 
-         run: docker push ${{env.DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
+         run: docker push ${{env.DOCKER_HUB_REPO}}/${{ env.DOCKER_IMAGE }}:${{ env.LATEST_TAG }}
         
        
       
