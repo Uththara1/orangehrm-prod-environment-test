@@ -5,7 +5,7 @@ on:
 env:
   REPO: "orangehrm/orangehrm-environment-images"
   TAG: "prod-php-7.4-ubuntu20.04" 
-  DOCKER_HUB_REPO: "us95123/orangehrm-environment-images"
+  DOCKER_HUB_REPO: "us95123"
   LATEST_TAG: "ubuntu20"
   
 jobs:
@@ -46,8 +46,8 @@ jobs:
        - name: Login to docker hub
          uses: docker/login-action@v2
          with: 
-           username: ${{secret.DOCKER_HUB_UN}} 
-           password: ${{secret.DOCKER_HUB_PW}}
+           username: ${{secrets.DOCKER_HUB_UN}} 
+           password: ${{secrets.DOCKER_HUB_PW}}
 
        - name: tag the docker image 
          run: tag ${{ env.REPO }}:${{ env.TAG }} ${{DOCKER_HUB_REPO}}/${{ env.REPO }}:${{ env.LATEST_TAG }}
