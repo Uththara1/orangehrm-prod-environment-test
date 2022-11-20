@@ -61,7 +61,6 @@ jobs:
        - name: push the image 
          run: docker push ${{env.DOCKER_HUB_REPO}}:${{ env.LATEST_TAG }}
         
-
   pull_request:
     branches:
       - main
