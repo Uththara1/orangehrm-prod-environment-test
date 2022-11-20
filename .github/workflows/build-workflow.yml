@@ -8,6 +8,8 @@ env:
   DOCKER_HUB_REPO: "us95123/ubuntu20.04"
   LATEST_TAG: "ubuntu20"
   DOKCER_IMAGE: "orangehrm-environment-images"
+  UPSTREAM: "Uththara1/orangehrm-prod-environment"
+  UPSTREAM_BRANCH: "refs/heads/php-7.4-ubuntu-20.04"
   
 jobs:
 
@@ -59,5 +61,20 @@ jobs:
        - name: push the image 
          run: docker push ${{env.DOCKER_HUB_REPO}}:${{ env.LATEST_TAG }}
         
-       
       
+on:
+    pull_request:
+       branches:
+        - main
+
+jobs:
+    build:
+
+      runs on: ubuntu-latest
+      steps:
+      
+      - name: check the branch name
+        if: ${{ github.repository == env.UPSTREAM && github.ref == env.UPSTREAM_BRANCH }}
+        run: echo "Hello develop"
+
+
