@@ -61,11 +61,10 @@ jobs:
        - name: push the image 
          run: docker push ${{env.DOCKER_HUB_REPO}}:${{ env.LATEST_TAG }}
         
-      
-on:
-    pull_request:
-       branches:
-        - main
+
+  pull_request:
+    branches:
+      - main
 
 jobs:
     build:
