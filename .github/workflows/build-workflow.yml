@@ -62,8 +62,7 @@ jobs:
          run: docker push ${{env.DOCKER_HUB_REPO}}:${{ env.LATEST_TAG }}
         
   pull_request:
-    branches:
-      - main
+    branches: [ php-7.4-ubuntu-20.04 ]
 
 jobs:
     build:
