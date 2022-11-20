@@ -65,15 +65,8 @@ jobs:
        - name: push the image 
          run: docker push ${{env.DOCKER_HUB_REPO}}:${{ env.LATEST_TAG }}
         
-  
-jobs:
-    build:
-
-      runs on: ubuntu-latest
-      steps:
-      
-      - name: check the branch name
-        if: ${{ github.repository == env.UPSTREAM && github.ref == env.UPSTREAM_BRANCH }}
-        run: echo "Hello develop"
+       - name: check the branch name
+         if: ${{ github.repository == env.UPSTREAM && github.ref == env.UPSTREAM_BRANCH }}
+         run: echo "Hello develop"
 
 
