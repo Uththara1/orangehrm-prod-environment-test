@@ -68,13 +68,13 @@ jobs:
        - name: create pull request
          uses: peter-evans/create-pull-request@v3
 
-jobs:
-    pull-request:
-      name: Open PR to main
-      runs-on: ubuntu-latest
-      steps: 
-       - uses: repo-sync/pull-request@v2
-         name: pull-request
-         with:
-          destination_branch: ${{ env.UPSTREAM }}
+#jobs:
+    #pull-request:
+      #name: Open PR to main
+      #runs-on: ubuntu-latest
+      #steps: 
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+          with:
+           destination_branch: ${{ env.UPSTREAM }}
 
