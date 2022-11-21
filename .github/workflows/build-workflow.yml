@@ -73,8 +73,8 @@ jobs:
       runs-on: ubuntu-latest
       steps: 
       - name: pull-request
-        uses: repo-sync/pull-request@v2
+        uses: peter-evans/create-pull-request@v3
         with:
           destination_branch: ${{ env.UPSTREAM }}
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
