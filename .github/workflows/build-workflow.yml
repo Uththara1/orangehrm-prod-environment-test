@@ -8,6 +8,7 @@ on:
 permissions:
   issues: write
   pull-requests: write
+  repository-projects: write
 
 env:
   REPO: "orangehrm/orangehrm-environment-images"
