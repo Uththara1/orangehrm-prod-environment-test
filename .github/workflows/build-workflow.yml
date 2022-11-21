@@ -76,4 +76,5 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           destination_branch: ${{ env.UPSTREAM }}
+          github_token: ${{ secrets.TOKEN }}
 
