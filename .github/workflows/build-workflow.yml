@@ -68,10 +68,10 @@ jobs:
          uses: peter-evans/create-pull-request@v3
 
 #jobs:
-    #pull-request:
-      #name: Open PR to main
-      #runs-on: ubuntu-latest
-      #steps: 
+    pull-request:
+      name: Open PR to main
+      runs-on: ubuntu-latest
+      steps: 
       - name: pull-request
         uses: repo-sync/pull-request@v2
           with:
