@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ php-7.4-ubuntu-20.04 ]
 
-permissions: read-all
+permissions: read-all|write-all
 
 env:
   REPO: "orangehrm/orangehrm-environment-images"
